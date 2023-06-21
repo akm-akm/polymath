@@ -1,10 +1,11 @@
 import { auth, db } from "../src/utils/firebase";
-import "dotenv";
 import Fab from "@mui/material/Fab";
 import SaveIcon from "@mui/icons-material/Save";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import Snackbar from "@mui/material/Snackbar";
+import { useState } from "react";
 
 function Save({ term, links, saved, setSaved }) {
 	const [user, setUser] = useAuthState(auth);
@@ -18,7 +19,19 @@ function Save({ term, links, saved, setSaved }) {
 		bottom: 70,
 		right: 16
 	};
+	const [open, setOpen] = useState(false);
 
+	const handleClick = () => {
+		setOpen(true);
+	};
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpen(false);
+	};
 	const handleSubmit = async () => {
 		try {
 			if (!user) {
@@ -34,6 +47,7 @@ function Save({ term, links, saved, setSaved }) {
 			const d = await addDoc(collRef, data);
 			console.log(d);
 			setSaved([data, ...saved]);
+			handleClick();
 			console.log(saved);
 		} catch (error) {
 			console.log(error);
@@ -47,6 +61,15 @@ function Save({ term, links, saved, setSaved }) {
 				color="primary"
 				variant="extended"
 			>
+				<Snackbar
+					open={open}
+					autoHideDuration={2000}
+					onClose={handleClose}
+					message="Images Saved"
+					severity="success"
+					color="white"
+					variant="outlined"
+				/>
 				<SaveIcon sx={{ mr: 1 }} />
 				Save
 			</Fab>

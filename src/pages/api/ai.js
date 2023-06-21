@@ -1,6 +1,4 @@
 import axios from "axios";
-import dotenv from "dotenv";
-
 
 const itemData = [
 	"https://image.lexica.art/full_jpg/0b90de5d-d818-4c15-9303-6c27c2ab833f",
@@ -43,11 +41,8 @@ const itemData = [
 	"https://image.lexica.art/full_jpg/ff1e7ce5-e49c-4066-8f7e-c116581ea09b"
 ];
 
-
 const ai = async (req, res) => {
 	try {
-		console.log(222222222222222);
-
 		const { data } = req.body;
 
 		const options = {
@@ -63,9 +58,9 @@ const ai = async (req, res) => {
 				page: 1
 			}
 		};
-		  const response = await axios.request(options);
+		const response = await axios.request(options);
 		//  res.status(200).json({ images: itemData });
-			res.status(200).json({ images: response.data.results.images });
+		res.status(200).json({ images: response.data.results.images });
 	} catch (error) {
 		console.log(error);
 		res.status(501);

@@ -1,10 +1,9 @@
 import { auth } from "../src/utils/firebase";
-import "dotenv";
 import Fab from "@mui/material/Fab";
-import SaveIcon from "@mui/icons-material/Save";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 function Login() {
 	const [user, setUser] = useAuthState(auth);
 	const googleAuth = new GoogleAuthProvider();
@@ -21,7 +20,7 @@ function Login() {
 	if (!user)
 		return (
 			<Fab sx={fabStyle} onClick={login} color="primary" variant="extended">
-				<SaveIcon sx={{ mr: 1 }} />
+				<LoginIcon sx={{ mr: 1 }} />
 				Login
 			</Fab>
 		);
@@ -33,7 +32,7 @@ function Login() {
 				color="primary"
 				variant="extended"
 			>
-				<SaveIcon sx={{ mr: 1 }} />
+				<LogoutIcon sx={{ mr: 1 }} />
 				Log out
 			</Fab>
 		);
