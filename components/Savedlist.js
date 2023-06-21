@@ -19,9 +19,10 @@ export default function Saved({ saved, setSaved }) {
 					data.id = doc.id;
 					return data;
 				});
-				docs.filter((x) => x.user != user.email);
+				console.log(user.email);
+				const r = docs.filter((x) => x.user == user.email);
 				console.log(docs);
-				setSaved(docs);
+				setSaved(r);
 			} catch (error) {
 				console.log(error);
 			}
@@ -40,7 +41,7 @@ export default function Saved({ saved, setSaved }) {
 				<>
 					<h3 key={item.id}>{item.term}</h3>
 					<ImageList
-						key={item.id+'21'}
+						key={item.id + "21"}
 						sx={{ width: "100%", height: 404 }}
 						cols={20}
 						rowHeight={200}
