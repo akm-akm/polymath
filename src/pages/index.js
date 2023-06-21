@@ -47,25 +47,23 @@ function Index() {
 			/>
 			<button onClick={handleSubmit}>Search</button>
 
-		
-				<div className={styles.div1}>
-					{data.length != 0 ? (
-						<>
-							<Save
-								term={value.data}
-								saved={saved}
-								setSaved={setSaved}
-								links={data}
-							/>
-							<Imageslist data={data} />
-						</>
-					) : (
-						""
-					)}
-				
-				<div className={styles.div1}>
-					{<Saved saved={saved} setSaved={setSaved} />}
-				</div>
+			<div className={styles.div1}>
+				{data.length != 0 ? (
+					<>
+						<Save
+							term={value.data}
+							saved={saved}
+							setSaved={setSaved}
+							links={data}
+						/>
+						<Imageslist data={data} />
+					</>
+				) : (
+					""
+				)}
+			</div>
+			<div className={styles.div1}>
+				{<Saved saved={saved} setSaved={setSaved} />}
 			</div>
 		</div>
 	);
