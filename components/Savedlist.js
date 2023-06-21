@@ -5,6 +5,7 @@ import Image from "next/image";
 import { auth, db } from "../src/utils/firebase";
 import { collection, getDocs, Timestamp } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Divider from "@mui/material/Divider";
 
 export default function Saved({ saved, setSaved }) {
 	const [user, setUser] = useAuthState(auth);
@@ -13,10 +14,15 @@ export default function Saved({ saved, setSaved }) {
 			try {
 				const collRef = collection(db, "save");
 				const snapshots = await getDocs(collRef);
-				const docs = snapshots.docs.map((doc) => doc.data());
+				const docs = snapshots.docs.map((doc) => {
+					const data = doc.data();
+					data.id = doc.id;
+					return data;
+				});
+				console.log(user.email);
+				const r = docs.filter((x) => x.user == user.email);
 				console.log(docs);
-				docs.filter((x) => x.user != user.email);
-				setSaved(docs);
+				setSaved(r);
 			} catch (error) {
 				console.log(error);
 			}
@@ -33,13 +39,13 @@ export default function Saved({ saved, setSaved }) {
 		<>
 			{saved.map((item) => (
 				<>
+					<h3 key={item.id}>{item.term}</h3>
 					<ImageList
-						key={item.term}
-						sx={{ width: 80, height: 70 }}
-						cols={4}
-						rowHeight={30}
+						key={item.id + "21"}
+						sx={{ width: "100%", height: 404 }}
+						cols={20}
+						rowHeight={200}
 					>
-					<p key={item.term}>{item.term}</p>
 						{item.links.map((x) => (
 							<ImageListItem key={x}>
 								<img
@@ -51,6 +57,7 @@ export default function Saved({ saved, setSaved }) {
 							</ImageListItem>
 						))}
 					</ImageList>
+					<Divider />
 				</>
 			))}
 		</>
