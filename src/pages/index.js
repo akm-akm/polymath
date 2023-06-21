@@ -17,7 +17,7 @@ function Index() {
 	});
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!value) {
+		if (value=="") {
 			return;
 		}
 		const response = await axios({
@@ -56,7 +56,7 @@ function Index() {
 			>
 				<TextField
 					fullWidth
-					label="Type here"
+					label="Write yout imagination here"
 					size="small"
 					name="data"
 					onChange={handleChange}
@@ -84,7 +84,7 @@ function Index() {
 						<Imageslist data={data} />
 					</>
 				) : (
-					""
+					<h1>Polymat AI Internship Assignmet</h1>
 				)}
 			</div>
 			<Divider />
