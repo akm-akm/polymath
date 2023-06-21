@@ -12,16 +12,27 @@ function Login() {
 		const result = await signInWithPopup(auth, googleAuth);
 	};
 
+	const fabStyle = {
+		position: "fixed",
+		bottom: 16,
+		right: 16
+	};
+
 	if (!user)
 		return (
-			<Fab onClick={login} color="primary" variant="extended">
+			<Fab sx={fabStyle} onClick={login} color="primary" variant="extended">
 				<SaveIcon sx={{ mr: 1 }} />
 				Login
 			</Fab>
 		);
 	else
 		return (
-			<Fab onClick={() => auth.signOut()} color="primary" variant="extended">
+			<Fab
+				sx={fabStyle}
+				onClick={() => auth.signOut()}
+				color="primary"
+				variant="extended"
+			>
 				<SaveIcon sx={{ mr: 1 }} />
 				Log out
 			</Fab>

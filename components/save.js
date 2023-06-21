@@ -12,6 +12,13 @@ function Save({ term, links, saved, setSaved }) {
 	const login = async () => {
 		const result = await signInWithPopup(auth, googleAuth);
 	};
+
+	const fabStyle = {
+		position: "fixed",
+		bottom: 70,
+		right: 16
+	};
+
 	const handleSubmit = async () => {
 		try {
 			if (!user) {
@@ -25,14 +32,21 @@ function Save({ term, links, saved, setSaved }) {
 			const collRef = collection(db, "save");
 			console.log(data);
 			const d = await addDoc(collRef, data);
+			console.log(d);
 			setSaved([data, ...saved]);
+			console.log(saved);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	return (
 		<>
-			<Fab onClick={handleSubmit} color="primary" variant="extended">
+			<Fab
+				sx={fabStyle}
+				onClick={handleSubmit}
+				color="primary"
+				variant="extended"
+			>
 				<SaveIcon sx={{ mr: 1 }} />
 				Save
 			</Fab>

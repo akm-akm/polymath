@@ -5,6 +5,11 @@ import Save from "../../components/save";
 import Login from "../../components/login";
 import Saved from "../../components/Savedlist";
 import styles from "../styles/Home.module.css";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 function Index() {
 	const [data, setData] = useState([]);
@@ -35,19 +40,41 @@ function Index() {
 	};
 
 	return (
-		<div className={styles.div0}>
+		<div>
 			<Login />
-			<input
-				type="text"
-				name="data"
-				id="search"
-				value={value.data}
-				onChange={handleChange}
-				placeholder="Search here"
-			/>
-			<button onClick={handleSubmit}>Search</button>
 
-			<div className={styles.div1}>
+			<Box
+				sx={{
+					width: 400,
+					maxWidth: "100%",
+					position: "fixed",
+					top: "80%",
+					left: "50%",
+					padding: "10px",
+					marginLeft: -26,
+					zIndex: 2,
+					backgroundColor: "white"
+				}}
+			>
+				<TextField
+					fullWidth
+					label="Type here"
+					size="small"
+					name="data"
+					onChange={handleChange}
+					margin="normal"
+				/>
+				<Button
+					size="large"
+					fullWidth
+					onClick={handleSubmit}
+					variant="contained"
+				>
+					Search
+				</Button>
+			</Box>
+
+			<div>
 				{data.length != 0 ? (
 					<>
 						<Save
@@ -62,9 +89,11 @@ function Index() {
 					""
 				)}
 			</div>
-			<div className={styles.div1}>
-				{<Saved saved={saved} setSaved={setSaved} />}
-			</div>
+			<Divider />
+			<h1>Saved Images</h1>
+			<Divider />
+
+			<div>{<Saved saved={saved} setSaved={setSaved} />}</div>
 		</div>
 	);
 }

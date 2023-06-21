@@ -63,9 +63,9 @@ const ai = async (req, res) => {
 				page: 1
 			}
 		};
-		//  const response = await axios.request(options);
-		  res.status(200).json({ images: itemData });
-		//	res.status(200).json({ images: response.data.results.images });
+		  const response = await axios.request(options);
+		//  res.status(200).json({ images: itemData });
+			res.status(200).json({ images: response.data.results.images });
 	} catch (error) {
 		console.log(error);
 		res.status(501);
