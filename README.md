@@ -1,8 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Polymath AI  
 
-## Getting Started
 
-First, run the development server:
+
+First, fill the `.env.example` with the given environment variables, then rename it to `.env.local`
+
+Then, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -14,21 +24,21 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Working
 
-## Learn More
+- This website displays AI generated images using user input and by calling Rapid API.
+- When a user visits the website, he is presented with a search bar where he can input a image description, after clicking the search button, an image grid is displayed with 30 to 40 images.
+- The user also gets an option to save the images with a save button. When the user clicks the save button, a pop up is opened with the option to  sign in using his google account( if he is not logged in). It then saves the images and also displays the saved images in the right side.
+- The user also gets an option to log in using a button if he just wants to see his previously saved images.
+- The user can also sign out of the application.
+- It uses firebase authentication and firestore database to store the images.
+- To get the image, it calls Rapid API (https://rapidapi.com/sohailglt/api/ai-image-generator3/)
 
-To learn more about Next.js, take a look at the following resources:
+## Assumptions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- The user gets to search for images even though he is not authenticated, because not everyone likes to log in for everything.
+- The user is automatically presented with the pop up if he is not logged in and he clicks on the save button.
+- he also gets a dedicated log in button if he just wants to see his saved posts.
+- The user can delete his own posts.
+- Not much emphasis is given on the appearace of the website.

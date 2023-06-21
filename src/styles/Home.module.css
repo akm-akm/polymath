@@ -1,12 +1,15 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+
+.div0 {
+    border: 3px solid #379eff;
+    padding: 20px;
 }
 
+.div1 {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 2px solid rgb(36, 36, 36);
+}  
 .description {
   display: inherit;
   justify-content: inherit;

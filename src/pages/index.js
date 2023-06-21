@@ -4,6 +4,7 @@ import axios from "axios";
 import Save from "../../components/save";
 import Login from "../../components/login";
 import Saved from "../../components/Savedlist";
+import styles from "../styles/Home.module.css";
 
 function Index() {
 	const [data, setData] = useState([]);
@@ -34,34 +35,38 @@ function Index() {
 	};
 
 	return (
-		<div>
+		<div className={styles.div0}>
 			<Login />
-			<div className="div1">
-				<input
-					type="text"
-					name="data"
-					id="search"
-					value={value.data}
-					onChange={handleChange}
-					placeholder="Search here"
-				/>
-				<button onClick={handleSubmit}>Search</button>
-				{data.length != 0 ? (
-					<>
-						<Save
-							term={value.data}
-							saved={saved}
-							setSaved={setSaved}
-							links={data}
-						/>
-						<Imageslist data={data} />
-					</>
-				) : (
-					""
-				)}
+			<input
+				type="text"
+				name="data"
+				id="search"
+				value={value.data}
+				onChange={handleChange}
+				placeholder="Search here"
+			/>
+			<button onClick={handleSubmit}>Search</button>
+
+		
+				<div className={styles.div1}>
+					{data.length != 0 ? (
+						<>
+							<Save
+								term={value.data}
+								saved={saved}
+								setSaved={setSaved}
+								links={data}
+							/>
+							<Imageslist data={data} />
+						</>
+					) : (
+						""
+					)}
+				
+				<div className={styles.div1}>
+					{<Saved saved={saved} setSaved={setSaved} />}
+				</div>
 			</div>
-			<div className="div2">{<Saved saved={saved} setSaved={setSaved} />}</div>
-			<div className="div3"></div>
 		</div>
 	);
 }
